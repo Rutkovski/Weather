@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Погода</string>
+    <string name="background_picture">Фоновая картинка</string>
+    <string name="false_search">Город не найден</string>
+    <string name="find_out_the_weather">узнать погоду</string>
+    <string name="hint">Введите название города или индекс:</string>
+    <string name="description_weather">%s\nТемпература: %s\nНа улице: %s</string>
+</resources>
