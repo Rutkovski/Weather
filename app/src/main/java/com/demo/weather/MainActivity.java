@@ -18,9 +18,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
-    private final String WEATHER_URL = "http://openweathermap.org/data/2.5/weather?q=%s&appid=439d4b804bc8187953eb36d2a8c26a02&lang=ru";
+
+    private final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q=%s&appid=3a7fd8f6c4b9eba310051c3fa2376ed0&lang=ru&units=metric";
     private TextView textView;
     private EditText editText;
 
@@ -32,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
     }
 
-    public void onClickWeather(View view) {
+    public void onClickWeather(View view) throws ExecutionException, InterruptedException {
         String city = editText.getText().toString().trim();
+
 
         if (!city.isEmpty()) {
             DownloadJSONWeather task = new DownloadJSONWeather();
             String url = String.format(WEATHER_URL, city);
-            task.execute(url);
+            String info = task.execute(url).get().toString();
         }
     }
 
@@ -72,17 +75,16 @@ public class MainActivity extends AppCompatActivity {
 
             return stringBuilder.toString();
         }
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
             try {
                 JSONObject jsonObject = new JSONObject(s);
                 String name = jsonObject.getString("name");
                 String temp = jsonObject.getJSONObject("main").getString("temp");
-                String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
-                String weather = String.format(getString(R.string.description_weather), name, temp, description);
+                int tempRound = (int) Math.round(Double.parseDouble(temp));
+                String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
+                String weather = String.format(getString(R.string.description_weather), name, tempRound, description);
                 textView.setText(weather);
             } catch (JSONException ex) {
                 ex.printStackTrace();

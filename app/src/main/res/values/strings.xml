@@ -2,7 +2,7 @@
     <string name="app_name">Weather</string>
     <string name="background_picture">background picture</string>
     <string name="find_out_the_weather">find out the weather</string>
-    <string name="description_weather">%s\n Temperature: %s\n in the weather: %s</string>
+    <string name="description_weather">%s\n Temperature: %dºC\n in the weather: %s</string>
     <string name="false_search">city not found</string>
     <string name="hint">Enter city name or zip code:</string>
 </resources>

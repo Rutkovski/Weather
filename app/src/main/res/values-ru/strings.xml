@@ -5,5 +5,5 @@
     <string name="false_search">Город не найден</string>
     <string name="find_out_the_weather">узнать погоду</string>
     <string name="hint">Введите название города или индекс:</string>
-    <string name="description_weather">%s\nТемпература: %s\nНа улице: %s</string>
+    <string name="description_weather">%s\nТемпература: %sºC\nНа улице: %s</string>
 </resources>
